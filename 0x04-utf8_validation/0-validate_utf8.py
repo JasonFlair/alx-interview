@@ -22,6 +22,9 @@ def validUTF8(data):
     from the 6th minute
     """
 
+    if not data:  # if data is an empty list
+        return False
+
     # create a list with the binary versions of the numbers in the data set.
     # [2:] slices the initial 0b used to specify the number is a binary
     # zfill is used to fill the numbers with 0's to complete the 8-bit byte
