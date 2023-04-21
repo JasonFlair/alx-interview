@@ -23,7 +23,7 @@ def validUTF8(data):
     """
 
     if data == []:  # if data is an empty list
-        return False
+        return True
 
     # create a list with the binary versions of the numbers in the data set.
     # [2:] slices the initial 0b used to specify the number is a binary
