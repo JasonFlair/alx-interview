@@ -35,8 +35,8 @@ def validUTF8(data):
         return True  # because it is a data set of single byte characters
     # if it is multibyte, ensure it follows multibyte rules
     elif binary_data[0][0:3] == "110" \
-            or binary_data[0][0:4] == "1110" \
-            or binary_data[0][0:5] == "11110":
+            or binary_data[0][0:4] == "1110" and len(binary_data) >= 3 \
+            or binary_data[0][0:5] == "11110" and len(binary_data) >= 4:
         # if it is 2 bytes long and above:
         for bin_num in binary_data[1:]:
             if bin_num[0:2] != "10":  # ensure subsequent bytes start with 10
