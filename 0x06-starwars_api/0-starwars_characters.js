@@ -6,19 +6,36 @@ const mainUrl = 'https://swapi-api.alx-tools.com/api/films/';
 
 const requestUrl = mainUrl + movieId;
 
-request(requestUrl, (error, response, body) => {
-  if (error) {
+async function getCharacterName () {
+  try {
+    const filmResp = await getRequest(requestUrl);
+    const characters = filmResp.characters;
+    // loop through each character URL
+    for (const characterurl of characters) {
+      const character = await getRequest(characterurl);
+      // extract the character's name from the character data
+      const characterName = character.name;
+      console.log(characterName);
+    }
+  } catch (error) {
     console.log(error);
   }
-  const resp = JSON.parse(body);
-  const characters = resp.characters;
-  for (const character of characters) {
-    request(character, (error, response, body) => {
+}
+
+// performs get request and returns a promise
+// so we can work asynchronously
+function getRequest (url) {
+  return new Promise((resolve, reject) => {
+    request(url, (error, response, body) => {
       if (error) {
-        console.log(error);
+        reject(error);
       }
-      const nameResponse = JSON.parse(body);
-      console.log(nameResponse.name);
+      // If the request is successful, parse the response body as JSON
+      // and resolve the promise with the data
+      const resp = JSON.parse(body);
+      resolve(resp);
     });
-  }
-});
+  });
+}
+
+getCharacterName();
