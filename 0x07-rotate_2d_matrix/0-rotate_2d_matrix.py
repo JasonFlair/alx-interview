@@ -17,7 +17,7 @@ def rotate_2d_matrix(matrix):
         temp_temp_list = []
 
     # after temp list operation is completed,
-    # it will be the matrix in 90 degrees
+    # temp_list will be the matrix in 90 degrees
     # so remove everything in the matrix and append temp list content
     del matrix[:]
     for i in temp_list:
