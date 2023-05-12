@@ -16,7 +16,7 @@ def rotate_2d_matrix(matrix):
         temp_list.append(temp_temp_list)
         temp_temp_list = []
 
-    # after temp list operation is completed,
+    # when temp list operation is complete,
     # temp_list will be the matrix in 90 degrees
     # so remove everything in the matrix and append temp list content
     del matrix[:]
